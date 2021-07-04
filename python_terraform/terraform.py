@@ -346,12 +346,11 @@ class Terraform:
 
         out, err = p.communicate()
         ret_code = p.returncode
-        logger.info("output: %s", out)
-
+        
         if ret_code == 0:
             self.read_state_file()
         else:
-            logger.warning("error: %s", err)
+            logger.error("error: %s", err)
 
         self.temp_var_files.clean_up()
         if capture_output is True:
